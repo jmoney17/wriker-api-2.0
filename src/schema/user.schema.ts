@@ -72,7 +72,7 @@ export type CreateUserInput = Omit<
 
 const params = {
   params: object({
-    parameters: object({}),
+    parameters: string({}),
   }),
 };
 
