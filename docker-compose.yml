@@ -7,8 +7,6 @@ services:
       - NODE_ENV=production
     build:
         context: ./
-    ports:
-      - "1337:1337"
 
   caddy:
     image: caddy/caddy:2.2.1-alpine
