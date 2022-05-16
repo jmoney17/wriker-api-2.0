@@ -1,7 +1,8 @@
 export default {
   port: 1337,
   // origin: 'http://localhost:3000',
-  origin: 'https://wriker.ca',
+  // origin: 'https://wriker.ca',
+  origin: 'https://6282d3bc755ebc0008247a51--gorgeous-buttercream-3dc9d5.netlify.app/',
   dbUri: "",
   saltWorkFactor: 10,
   accessTokenTtl: "15m",
