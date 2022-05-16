@@ -1,12 +1,14 @@
 version: '3.7'
 services:
-  rest-api:
-    container_name: rest-api
+  wriker-api:
+    container_name: wriker-api
     restart: unless-stopped
     environment:
       - NODE_ENV=production
     build:
-        context: ./ 
+        context: ./
+    ports:
+     - 1337:1337
 
   caddy:
     image: caddy/caddy:2.2.1-alpine

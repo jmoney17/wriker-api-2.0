@@ -2,6 +2,7 @@ import { get } from "lodash";
 import { Request, Response, NextFunction } from "express";
 import { verifyJwt } from "../utils/jwt.utils";
 import { reIssueAccessToken } from "../service/session.service";
+import log from "../utils/logger";
 
 const deserializeUser = async (
   req: Request,
@@ -36,6 +37,7 @@ const deserializeUser = async (
     const result = verifyJwt(newAccessToken as string, "accessTokenPublicKey");
 
     res.locals.user = result.decoded;
+    log.info("reissuing jwt access token")
     return next();
   }
 

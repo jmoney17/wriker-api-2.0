@@ -1,7 +1,6 @@
 import Contact, { ContactDocument } from '../models/contact.model';
 import express, { Request, Response, NextFunction } from 'express';
 import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose';
-import { ProductDocument } from '../models/product.model';
 import { databaseResponseTimeHistogram } from '../utils/metrics';
 
 export async function getContactList(id: string){

@@ -10,7 +10,7 @@
     "build": "tsc"
   },
   "engines": {
-    "node": "12.22.9"
+    "node": "16.15.0"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
