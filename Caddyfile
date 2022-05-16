@@ -1,4 +1,4 @@
-  wriker-api.snipd.io {
+  wriker-api.wriker-dev.xyz {
     reverse_proxy wriker-api:1337 {
         header_down Strict-Transport-Security max-age=31536000;
     }
