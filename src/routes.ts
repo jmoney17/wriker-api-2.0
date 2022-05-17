@@ -4,7 +4,7 @@ import {   createUserSessionHandler, getUserSessionsHandler, deleteSessionHandle
 import { createUserHandler } from "./controller/user.controller";
 import requireUser from "./middleware/requireUser";
 import validateResource from "./middleware/validateResource";
-import { createContactSchema, deleteContactSchema, getContactSchema, updateContactSchema } from "./schema/contact.shema";
+import { createContactSchema, deleteContactSchema, getContactSchema, editContactSchema } from "./schema/contact.shema";
 import { createSessionSchema } from "./schema/session.schema";
 import { createUserSchema } from "./schema/user.schema";
 
@@ -71,8 +71,8 @@ function routes(app: Express) {
   app.get("/api/edit/:id", requireUser, validateResource(getContactSchema), getContactHandler);
 
   app.put(
-    "/api/edit/:id",
-    [requireUser, validateResource(updateContactSchema)],
+    "/api/edit",
+    [requireUser, validateResource(editContactSchema)],
     updateContactHandler
   );
 

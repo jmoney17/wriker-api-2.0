@@ -25,6 +25,12 @@ const params = {
   }),
 };
 
+const updateParams = {
+  query: object({
+    parameters: string({}),
+  }),
+}
+
 export const createContactSchema = object({
   ...payload,
 });
@@ -32,6 +38,11 @@ export const createContactSchema = object({
 export const updateContactSchema = object({
   ...payload,
   ...params,
+});
+
+export const editContactSchema = object({
+  ...payload,
+  ...updateParams,
 });
 
 export const deleteContactSchema = object({

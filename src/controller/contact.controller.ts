@@ -55,13 +55,20 @@ export async function getContactListHandler( req: Request<ContactByUser["params"
   }
 
   export async function updateContactHandler(
-    req: Request<UpdateContactInput["params"]>,
+    req: Request<ContactByUser["params"]>,
     res: Response
-  ) { 
-    const contactId = req.params.id;
+  ) {
+    let parameters = req.query.parameters; 
+    // const contactId = req.params.id;
     const update = req.body;
-  
-    const contact = await findContact( contactId );
+
+    if (typeof parameters === "string")
+    {
+      let params = JSON.parse(parameters);
+
+      const contactId = params.contactId;
+
+      const contact = await findContact( contactId );
   
     if (!contact) {
       return res.sendStatus(404);
@@ -72,6 +79,9 @@ export async function getContactListHandler( req: Request<ContactByUser["params"
     });
   
     return res.send(updatedContact);
+    
+    } 
+    
   }
 
   export async function deleteContactHandler(
