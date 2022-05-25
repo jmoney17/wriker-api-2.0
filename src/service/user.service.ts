@@ -11,6 +11,23 @@ export async function createUser(input: UserInput) {
       password: input.password
     }
 
+    let email = input.emailAddress;
+    let username = input.username;
+
+    const emailFind = await UserModel.findOne({ emailAddress: email });
+
+    const usernameFind = await UserModel.findOne({ username: username });
+
+    if (emailFind) {
+      let emailMessage = 'User with email "' + email + '" already exists';
+      throw  { message: emailMessage };
+    }
+
+    if (usernameFind) {
+      let usernameMessage = 'User with User Name "' + username + '" already exists';
+      throw  { message: usernameMessage };
+    }
+
     const user = await UserModel.create(editedInput);
 
     return omit(user.toJSON(), "password");

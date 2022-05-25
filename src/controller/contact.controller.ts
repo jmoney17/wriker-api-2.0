@@ -1,3 +1,4 @@
+import config from "config";
 import { Request, Response } from "express";
 import Contact, { ContactDocument } from "../models/contact.model";
 import { UpdateContactInput, CreateContactInput } from "../schema/contact.shema";
@@ -40,18 +41,36 @@ export async function getContactListHandler( req: Request<ContactByUser["params"
   }
 
   export async function getContactHandler(
-    req: Request<UpdateContactInput["params"]>,
+    req: Request<ContactByUser["params"]>,
     res: Response
   ) {
-    const contactId = req.params.id;
+    let parameters = req.query.parameters;
 
-    const contact = await findContact( contactId);
+    if (typeof parameters === "string")
+    {
+      let params = JSON.parse(parameters);
+
+      let contactId = params.id;
+      let userId = params.userId
+
+      const contact = await findContact( contactId);
   
-    if (!contact) {
-      return res.sendStatus(404);
-    }
-  
-    return res.send(contact);
+      if (!contact) 
+      {
+        return res.sendStatus(404);
+      }
+      
+      let admin = config.get<string>("adminId");
+
+      if (admin === userId)
+      {
+        return res.send(contact);
+      }
+      else 
+      {
+        res.status(403).send("unauthorized")
+      }            
+    }    
   }
 
   export async function updateContactHandler(

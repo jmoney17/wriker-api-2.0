@@ -29,7 +29,7 @@ index ce6ea8f..37dfbc0 100644
  
 -export interface UserDocument extends mongoose.Document {
 +export interface UserInput {
-   email: string;
+   emailAddress: string;
    name: string;
    password: string;
 +}

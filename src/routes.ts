@@ -68,7 +68,7 @@ function routes(app: Express) {
     createContactHandler
   );
 
-  app.get("/api/edit/:id", requireUser, validateResource(getContactSchema), getContactHandler);
+  app.get("/api/edit", requireUser, getContactHandler);
 
   app.put(
     "/api/edit",
