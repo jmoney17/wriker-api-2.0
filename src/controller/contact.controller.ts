@@ -62,7 +62,7 @@ export async function getContactListHandler( req: Request<ContactByUser["params"
       
       let admin = config.get<string>("adminId");
 
-      if (admin === userId)
+      if (admin === userId || userId === contact.createdBy)
       {
         return res.send(contact);
       }
